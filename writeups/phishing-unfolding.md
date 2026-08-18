@@ -1,6 +1,6 @@
 # Phishing Unfolding - Real-Time SOC Triage
 
-**Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Medium  ·  **Date completed:** [add your date, 2026-01-21]
+**Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Medium  ·  **Date completed:** 2026-01-21
 **Tags:** `phishing` `alert-triage` `splunk` `dns-exfiltration` `case-reporting` `mitre-attack`
 
 > Educational lab exercise carried out in the TryHackMe SOC Simulator. The organisation, hosts, and users are fictional scenario content. Specific gradeable answer values (exact indicator strings, addresses, filenames) are masked or redacted in line with TryHackMe's terms — the focus of this write-up is the real-time triage workflow and reporting approach.
