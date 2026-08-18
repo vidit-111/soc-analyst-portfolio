@@ -13,7 +13,7 @@ Each write-up focuses on **methodology and analysis**: how the investigation was
 | Investigation | Environment | Focus | Key skills demonstrated |
 |---|---|---|---|
 | [APT28: Link to Trouble](writeups/apt28-link-to-trouble.md) | TryHackMe SOC Simulator | Threat-actor intrusion, full attack lifecycle | Log correlation, TTP attribution, ATT&CK mapping, case reporting |
-| _Phishing Unfolding_ (coming soon) | TryHackMe SOC Simulator | Real-time phishing triage | Alert triage, dispositioning, IOC extraction, MTTR |
+| _Phishing Unfolding_ (writeups/phishing-unfolding.md) | TryHackMe SOC Simulator | Real-time phishing triage | Alert triage, dispositioning, IOC extraction, MTTR |
 | _SOC 1 Capstone_ (coming soon) | TryHackMe SOC 1 | Multi-stage intrusion DFIR | Endpoint/memory/network forensics, PowerShell deobfuscation |
 
 ---
