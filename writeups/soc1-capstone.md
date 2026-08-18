@@ -1,6 +1,6 @@
 # SOC 1 Capstone — Multi-Stage Intrusion DFIR
 
-**Environment:** TryHackMe SOC 1 (Capstone Challenges)  ·  **Difficulty:** Medium–Hard  ·  **Date completed:** [add your date, YYYY-MM-DD]
+**Environment:** TryHackMe SOC 1 (Capstone Challenges)  ·  **Difficulty:** Medium–Hard  ·  **Date completed:** [add your date, 2025-12-10]
 **Tags:** `dfir` `memory-forensics` `network-forensics` `email-analysis` `powershell` `mitre-attack`
 
 > Educational lab exercises carried out in the TryHackMe SOC 1 capstone. Organisations, hosts, and users are fictional scenario content. Flag values and other gradeable answer strings (exact IPs, domains, hashes, filenames) are masked or redacted in line with TryHackMe's terms — the focus is on forensic methodology and how findings are pieced together across artefacts.
