@@ -33,5 +33,5 @@ Each write-up focuses on **methodology and analysis**: how the investigation was
 
 ## Contact
 
-- **LinkedIn:** [add your URL]
+- **LinkedIn:** https://www.linkedin.com/in/viditkumar17/
 - **Email:** viditkumaruk@gmail.com
