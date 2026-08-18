@@ -1,4 +1,4 @@
-# Phishing Unfolding — Real-Time SOC Triage
+# Phishing Unfolding - Real-Time SOC Triage
 
 **Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Medium  ·  **Date completed:** [add your date, YYYY-MM-DD]
 **Tags:** `phishing` `alert-triage` `splunk` `dns-exfiltration` `case-reporting` `mitre-attack`
