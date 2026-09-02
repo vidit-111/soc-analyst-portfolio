@@ -1,4 +1,4 @@
-# APT28: Link to Trouble — SOC Investigation
+# APT28: Link to Trouble - SOC Investigation
 
 **Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Hard  ·  **Date completed:** 2025-03-12
 **Tags:** `threat-actor` `apt28` `splunk` `log-correlation` `mitre-attack` `case-reporting`
