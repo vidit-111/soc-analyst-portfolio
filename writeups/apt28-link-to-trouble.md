@@ -3,7 +3,7 @@
 **Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Hard  ·  **Date completed:** 2025-03-12
 **Tags:** `threat-actor` `apt28` `splunk` `log-correlation` `mitre-attack` `case-reporting`
 
-> Educational lab exercise carried out in the TryHackMe SOC Simulator. The victim organisation, hosts, and users are fictional scenario content. Specific gradeable answer values (exact indicator strings, addresses) are masked or redacted in line with TryHackMe's terms — the focus of this write-up is the investigative methodology and reporting approach.
+> Educational lab exercise carried out in the TryHackMe SOC Simulator. The victim organisation, hosts, and users are fictional scenario content. Specific gradeable answer values (exact indicator strings, addresses) are masked or redacted in line with TryHackMe's terms - the focus of this write-up is the investigative methodology and reporting approach.
 
 ---
 
