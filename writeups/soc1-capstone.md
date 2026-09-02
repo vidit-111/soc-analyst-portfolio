@@ -9,7 +9,7 @@
 
 ## Overview & objective
 
-Four post-compromise investigations, each starting from a different position in the attack and demanding a different forensic discipline. Across the set, the task was the same in spirit: take the available artefacts — endpoint logs, memory images, packet captures, email, and SIEM data — and reconstruct the full intrusion, from initial access through to the attacker's objective.
+Four post-compromise investigations, each starting from a different position in the attack and demanding a different forensic discipline. Across the set, the task was the same in spirit: take the available artefacts - endpoint logs, memory images, packet captures, email, and SIEM data — and reconstruct the full intrusion, from initial access through to the attacker's objective.
 
 Where a real-time triage scenario tests speed, these capstones test **depth**: normalising evidence from multiple sources into a single timeline, decoding obfuscation, and following an adversary end-to-end through the traces they leave behind.
 
