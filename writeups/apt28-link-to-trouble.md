@@ -73,6 +73,6 @@ The simulated organisation had been repeatedly targeted by **APT28 (Fancy Bear)*
 
 ## Lessons learned
 
-- **Ruling things out is analysis too.** The hardest and most valuable part of this triage was confidently dispositioning benign CDN traffic away from the real indicator — precision matters as much as detection.
+- **Ruling things out is analysis too.** The hardest and most valuable part of this triage was confidently dispositioning benign CDN traffic away from the real indicator - precision matters as much as detection.
 - **Origin evidence changes dispositions.** The `Zone.Identifier` ADS was a small artefact that carried a lot of weight; low-level details often decide a case.
 - **Attribute to the evidence.** It's tempting to lean on a threat group's reputation; the stronger report anchors attribution to observed behaviour and labels it "consistent with," leaving room for the investigation to speak for itself.
