@@ -9,7 +9,7 @@
 
 ## Scenario & objective
 
-The simulated organisation had been repeatedly targeted by **APT28 (Fancy Bear)**, a nation-state threat actor. Acting as the SOC analyst, the task was to triage the incoming alert queue and investigate a suspected intrusion, tracing adversary activity across the full attack lifecycle — from initial access through execution, persistence, privilege escalation, credential access, and network discovery — by correlating log sources in the SIEM and documenting each stage in analyst case reports.
+The simulated organisation had been repeatedly targeted by **APT28 (Fancy Bear)**, a nation-state threat actor. Acting as the SOC analyst, the task was to triage the incoming alert queue and investigate a suspected intrusion, tracing adversary activity across the full attack lifecycle - from initial access through execution, persistence, privilege escalation, credential access, and network discovery - by correlating log sources in the SIEM and documenting each stage in analyst case reports.
 
 ## Environment & data sources
 
