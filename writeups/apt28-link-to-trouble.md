@@ -19,19 +19,19 @@ The simulated organisation had been repeatedly targeted by **APT28 (Fancy Bear)*
 
 ## Tools used
 
-- **Splunk** — primary investigation: searching, filtering, and correlating events across hosts and time
-- **Threat-intelligence reference** — validating whether observed behaviours were consistent with known APT28 tradecraft
-- **Reputation/lookup services** — separating benign infrastructure (CDN, ad/analytics) from suspicious destinations
+- **Splunk** - primary investigation: searching, filtering, and correlating events across hosts and time
+- **Threat-intelligence reference** - validating whether observed behaviours were consistent with known APT28 tradecraft
+- **Reputation/lookup services** - separating benign infrastructure (CDN, ad/analytics) from suspicious destinations
 
 ## Investigation & methodology
 
 **1. Establish the entry point.** Working the alert queue by severity and timestamp, the earliest suspicious activity centred on a user workstation where a browser process wrote an archive file to the Downloads directory. Rather than treating the download in isolation, I pivoted on the process and the file to build context around it.
 
-**2. Confirm origin, not just presence.** The downloaded archive carried a `Zone.Identifier` Alternate Data Stream — evidence the file originated from the internet rather than being created locally. This is the kind of detail that turns "a file exists" into "a file was pulled from an external source," which materially changes the disposition.
+**2. Confirm origin, not just presence.** The downloaded archive carried a `Zone.Identifier` Alternate Data Stream - evidence the file originated from the internet rather than being created locally. This is the kind of detail that turns "a file exists" into "a file was pulled from an external source," which materially changes the disposition.
 
-**3. Separate signal from noise.** The browser process had generated a spread of outbound HTTPS connections around the same time. Reputation and provider lookups showed most of these resolving to CDN and analytics infrastructure (major cloud/CDN providers) — benign traffic incidental to normal browsing and the download itself. Deliberately *ruling these out* was as important as flagging the archive: over-escalating benign CDN traffic is a common triage error, and distinguishing it here kept the case focused on the genuine indicator.
+**3. Separate signal from noise.** The browser process had generated a spread of outbound HTTPS connections around the same time. Reputation and provider lookups showed most of these resolving to CDN and analytics infrastructure (major cloud/CDN providers) - benign traffic incidental to normal browsing and the download itself. Deliberately *ruling these out* was as important as flagging the archive: over-escalating benign CDN traffic is a common triage error, and distinguishing it here kept the case focused on the genuine indicator.
 
-**4. Trace the chain forward.** From the foothold, I followed the activity across subsequent stages — execution of a downloaded payload, a persistence mechanism registered on the host, privilege escalation, and follow-on discovery/credential-access behaviour — correlating each step across process, registry, and network events to reconstruct a coherent timeline rather than a set of isolated alerts.
+**4. Trace the chain forward.** From the foothold, I followed the activity across subsequent stages - execution of a downloaded payload, a persistence mechanism registered on the host, privilege escalation, and follow-on discovery/credential-access behaviour - correlating each step across process, registry, and network events to reconstruct a coherent timeline rather than a set of isolated alerts.
 
 **5. Attribute cautiously.** The lure pattern (an archive masquerading as a routine technical/configuration document) and the staged intrusion behaviour were **consistent with APT28-style tradecraft** against government and enterprise targets. I framed the attribution as consistent-with rather than definitive, anchoring it to what was actually observed in the logs rather than to broad claims about the group.
 
