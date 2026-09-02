@@ -30,7 +30,7 @@ Where a real-time triage scenario tests speed, these capstones test **depth**: n
 
 **Boogeyman 2 - macro document and memory forensics.** A macro-enabled document arrived disguised as a résumé. olevba extracted and de-obfuscated the VBA macro; from there the chain ran through a LOLBin (`wscript`) that pulled a second-stage payload, with scheduled-task persistence. The distinguishing skill here was **memory forensics**: using Volatility 3 against a memory image to recover running processes, network connections, and command-line artefacts that confirmed the C2 and tied the stages together.
 
-**Boogeyman 3 - hunting the chain in a SIEM.** The final scenario shifted from single-host forensics to **threat hunting at scale** in Elastic/Kibana with KQL. The intrusion ran from a phishing lure through HTA execution (`mshta.exe`), an implant copied onto the host, lateral movement, and ultimately domain controller compromise. The work was about pivoting efficiently through large log volumes — from one indicator to the next — to reconstruct a chain no single event revealed on its own.
+**Boogeyman 3 - hunting the chain in a SIEM.** The final scenario shifted from single-host forensics to **threat hunting at scale** in Elastic/Kibana with KQL. The intrusion ran from a phishing lure through HTA execution (`mshta.exe`), an implant copied onto the host, lateral movement, and ultimately domain controller compromise. The work was about pivoting efficiently through large log volumes - from one indicator to the next - to reconstruct a chain no single event revealed on its own.
 
 ## Cross-cutting skills demonstrated
 
