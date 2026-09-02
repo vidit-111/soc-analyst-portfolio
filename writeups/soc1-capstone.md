@@ -1,4 +1,4 @@
-# SOC 1 Capstone — Multi-Stage Intrusion DFIR
+# SOC 1 Capstone - Multi-Stage Intrusion DFIR
 
 **Environment:** TryHackMe SOC 1 (Capstone Challenges)  ·  **Difficulty:** Medium–Hard  ·  **Date completed:** 2025-12-10
 **Tags:** `dfir` `memory-forensics` `network-forensics` `email-analysis` `powershell` `mitre-attack`
