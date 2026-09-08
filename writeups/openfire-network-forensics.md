@@ -32,7 +32,7 @@ This was a pure **network-forensics** exercise: no endpoint logs or memory image
 
 **4. Identify the backdoor login.** Returning to the login POSTs, the *last* `login.jsp` request showed the attacker authenticating with one of the accounts created earlier - confirming they'd built a rogue admin account and then logged in with it to hold access.
 
-**5. Spot the plugin upload by its shape, not its content.** Staying on the POST filter, a request to `plugin-admin.jsp` stood out purely by size - roughly **2.5 KB** against the few-hundred-byte login requests. That length anomaly was the tell. Following the HTTP stream confirmed a `multipart/form-data` body carrying a malicious **JAR plugin** — the persistence/RCE mechanism.
+**5. Spot the plugin upload by its shape, not its content.** Staying on the POST filter, a request to `plugin-admin.jsp` stood out purely by size - roughly **2.5 KB** against the few-hundred-byte login requests. That length anomaly was the tell. Following the HTTP stream confirmed a `multipart/form-data` body carrying a malicious **JAR plugin** - the persistence/RCE mechanism.
 
 **6. Trace command execution.** Filtered on `http.request.uri contains "cmd"` to surface requests to the plugin's `cmd.jsp` endpoint (the command interface the malicious plugin exposed). Inspecting the first request's payload showed the attacker's opening move - a `whoami` to check privilege.
 
@@ -80,7 +80,7 @@ Full intrusion reconstructed from the PCAP:
 
 ## Lessons learned
 
-- **Anomalies show up in metadata, not just payloads.** The plugin upload was easiest to find by *packet size*, not by reading content — a reminder that request length, timing, and frequency are first-class indicators in network forensics.
+- **Anomalies show up in metadata, not just payloads.** The plugin upload was easiest to find by *packet size*, not by reading content - a reminder that request length, timing, and frequency are first-class indicators in network forensics.
 - **Cleartext is the analyst's gift and the defender's failure.** Everything here was readable because the console ran over plain HTTP; the same fact that made the investigation straightforward is itself a critical finding to report.
 - **Order before answers.** Sorting chronologically before touching any single question prevented "first vs last" mix-ups — a small discipline that made every subsequent step reliable.
-- **Pivot views, not just filters.** The investigation needed both the HTTP view (to find the requests) and the TCP-stream view (to read the interactive shell) — knowing when to switch lens mattered as much as the filters themselves.
+- **Pivot views, not just filters.** The investigation needed both the HTTP view (to find the requests) and the TCP-stream view (to read the interactive shell) - knowing when to switch lens mattered as much as the filters themselves.
