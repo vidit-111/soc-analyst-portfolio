@@ -26,7 +26,7 @@ This was a pure **network-forensics** exercise: no endpoint logs or memory image
 
 **1. Order the timeline first.** Loaded the PCAP, applied an `http` filter, and sorted the time column ascending so events were strictly chronological - essential when the questions ask for the *first* login, the *first* account created, and so on. Getting the ordering right up front avoided misattributing later events to earlier ones.
 
-**2. Isolate authentication.** Filtered to POST requests against the login endpoint (`http.request.method == "POST"`, `/login.jsp`) and inspected the earliest one. Because the traffic was cleartext, the request body exposed the submitted username, password, and the CSRF token directly — the first login's credentials and token came straight out of that single request.
+**2. Isolate authentication.** Filtered to POST requests against the login endpoint (`http.request.method == "POST"`, `/login.jsp`) and inspected the earliest one. Because the traffic was cleartext, the request body exposed the submitted username, password, and the CSRF token directly - the first login's credentials and token came straight out of that single request.
 
 **3. Find attacker-created accounts.** Pivoted with a URI filter (`http.request.uri contains "user"`) and looked specifically for `user-create.jsp` requests. The parameters on those requests carried the new usernames, passwords, and an admin-privilege flag; taking the earliest `user-create.jsp` in the ordered list gave the first account the attacker created.
 
@@ -82,5 +82,5 @@ Full intrusion reconstructed from the PCAP:
 
 - **Anomalies show up in metadata, not just payloads.** The plugin upload was easiest to find by *packet size*, not by reading content - a reminder that request length, timing, and frequency are first-class indicators in network forensics.
 - **Cleartext is the analyst's gift and the defender's failure.** Everything here was readable because the console ran over plain HTTP; the same fact that made the investigation straightforward is itself a critical finding to report.
-- **Order before answers.** Sorting chronologically before touching any single question prevented "first vs last" mix-ups — a small discipline that made every subsequent step reliable.
+- **Order before answers.** Sorting chronologically before touching any single question prevented "first vs last" mix-ups - a small discipline that made every subsequent step reliable.
 - **Pivot views, not just filters.** The investigation needed both the HTTP view (to find the requests) and the TCP-stream view (to read the interactive shell) - knowing when to switch lens mattered as much as the filters themselves.
