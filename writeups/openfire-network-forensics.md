@@ -1,6 +1,6 @@
 # OpenFire - Network Forensics (PCAP)
 
-**Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [add your date, YYYY-MM-DD]
+**Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [add your date, 2026-09-08]
 **Tags:** `network-forensics` `pcap` `wireshark` `cve-2023-32315` `openfire` `mitre-attack`
 
 > Educational lab exercise from CyberDefenders. Challenge-specific answer values (tokens, credentials, created usernames, host addresses) are redacted or masked in line with the platform's terms — the focus of this write-up is the PCAP analysis methodology.
