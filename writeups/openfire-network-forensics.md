@@ -1,4 +1,4 @@
-# OpenFire — Network Forensics (PCAP)
+# OpenFire - Network Forensics (PCAP)
 
 **Environment:** CyberDefenders (Blue Team CTF)  ·  **Category:** Network Forensics  ·  **Difficulty:** Easy  ·  **Date completed:** [add your date, YYYY-MM-DD]
 **Tags:** `network-forensics` `pcap` `wireshark` `cve-2023-32315` `openfire` `mitre-attack`
