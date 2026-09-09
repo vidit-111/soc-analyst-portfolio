@@ -40,9 +40,9 @@ Unlike a retrospective investigation, this scenario tested **operational triage 
 - **Collection** - files of interest were staged into a hidden directory and archived for exfiltration.
 - **Exfiltration** - data was tunnelled out over **DNS**, using encoded lookups (`nslookup`-style queries paired with the PowerShell process) to smuggle information past controls that watch HTTP but not DNS.
 
-**4. Escalate on business impact.** The DNS-exfiltration alert was the pivotal one: recognising `nslookup.exe` driven by `powershell.exe` as covert exfiltration — rather than benign name resolution - is what justified escalation, given the high impact of a data breach. The case report for that alert set out the technique, the affected entities, the timeline, and the reasoning for escalation.
+**4. Escalate on business impact.** The DNS-exfiltration alert was the pivotal one: recognising `nslookup.exe` driven by `powershell.exe` as covert exfiltration - rather than benign name resolution - is what justified escalation, given the high impact of a data breach. The case report for that alert set out the technique, the affected entities, the timeline, and the reasoning for escalation.
 
-**5. Document to a consistent standard.** Each case report followed a 5 Ws structure - who/what was affected, what happened, where, when, and why it mattered — with escalation rationale, recommended remediation, and a list of attack indicators.
+**5. Document to a consistent standard.** Each case report followed a 5 Ws structure - who/what was affected, what happened, where, when, and why it mattered - with escalation rationale, recommended remediation, and a list of attack indicators.
 
 ## Key findings
 
