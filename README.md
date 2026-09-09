@@ -30,6 +30,7 @@ Each write-up focuses on **methodology and analysis**: how the investigation was
 
 - TryHackMe Security Analyst Level 1 (SAL1)
 - Splunk Certified Cybersecurity Defense Analyst (SPLK-5001)
+- TryHackMe SOC 1 and SOC 2
 - CompTIA CySA+ (CS0-003) — *in progress*
 
 ## Contact
