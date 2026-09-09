@@ -38,7 +38,7 @@ The simulated organisation had been repeatedly targeted by **APT28 (Fancy Bear)*
 ## Key findings
 
 - **Initial access:** a user downloaded a `.rar` archive disguised as a technical configuration guide via the browser; the `Zone.Identifier` ADS confirmed external origin.
-- **Disposition:** **true positive** — escalated. The archive represented a credible initial-foothold vector in a targeted-intrusion context, despite surrounding benign CDN traffic.
+- **Disposition:** **true positive** - escalated. The archive represented a credible initial-foothold vector in a targeted-intrusion context, despite surrounding benign CDN traffic.
 - **Attack chain:** initial access → execution of a downloaded payload → persistence on the host → privilege escalation → discovery / credential access, reconstructed by correlating endpoint, registry, and network events across the SIEM.
 - **Noise correctly excluded:** multiple benign HTTPS connections to CDN/analytics providers were identified and dispositioned as non-malicious.
 
