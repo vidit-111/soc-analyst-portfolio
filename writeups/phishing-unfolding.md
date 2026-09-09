@@ -3,13 +3,13 @@
 **Environment:** TryHackMe SOC Simulator  ·  **Difficulty:** Medium  ·  **Date completed:** 2026-01-21
 **Tags:** `phishing` `alert-triage` `splunk` `dns-exfiltration` `case-reporting` `mitre-attack`
 
-> Educational lab exercise carried out in the TryHackMe SOC Simulator. The organisation, hosts, and users are fictional scenario content. Specific gradeable answer values (exact indicator strings, addresses, filenames) are masked or redacted in line with TryHackMe's terms — the focus of this write-up is the real-time triage workflow and reporting approach.
+> Educational lab exercise carried out in the TryHackMe SOC Simulator. The organisation, hosts, and users are fictional scenario content. Specific gradeable answer values (exact indicator strings, addresses, filenames) are masked or redacted in line with TryHackMe's terms - the focus of this write-up is the real-time triage workflow and reporting approach.
 
 ---
 
 ## Scenario & objective
 
-A phishing-driven intrusion unfolding in real time. Acting as the on-shift SOC analyst, the task was to work a live alert queue as detections arrived, prioritise by severity and timestamp, disposition each alert as a true or false positive, investigate the genuine detections in the SIEM, and document a structured case report for each — all while the attack progressed from initial delivery through to data exfiltration.
+A phishing-driven intrusion unfolding in real time. Acting as the on-shift SOC analyst, the task was to work a live alert queue as detections arrived, prioritise by severity and timestamp, disposition each alert as a true or false positive, investigate the genuine detections in the SIEM, and document a structured case report for each - all while the attack progressed from initial delivery through to data exfiltration.
 
 Unlike a retrospective investigation, this scenario tested **operational triage under time pressure**: keeping the queue moving, not over-escalating noise, and producing clear, defensible case notes at pace.
 
@@ -22,9 +22,9 @@ Unlike a retrospective investigation, this scenario tested **operational triage 
 
 ## Tools used
 
-- **Splunk** — primary investigation: querying and pivoting across email, endpoint, and DNS events to confirm or dismiss each alert
-- **Alert queue / IRP** — prioritisation, ownership, dispositioning, and case documentation
-- **Reputation / threat-intel lookups** — validating domains and artefacts encountered during triage
+- **Splunk** - primary investigation: querying and pivoting across email, endpoint, and DNS events to confirm or dismiss each alert
+- **Alert queue / IRP** - prioritisation, ownership, dispositioning, and case documentation
+- **Reputation / threat-intel lookups** - validating domains and artefacts encountered during triage
 
 ## Investigation & methodology
 
@@ -34,23 +34,23 @@ Unlike a retrospective investigation, this scenario tested **operational triage 
 
 **3. Reconstruct the chain across data sources.** For the true positives, I pivoted across log sources in Splunk to connect what were, at the alert level, separate events into a single coherent intrusion:
 
-- **Initial access** — a phishing email delivered the lure that began the intrusion.
-- **Execution** — a malicious PowerShell script executed on the endpoint, establishing a **PowerCat reverse shell** back to attacker infrastructure.
-- **Discovery** — hands-on-keyboard recon followed (system and user enumeration via built-in commands).
-- **Collection** — files of interest were staged into a hidden directory and archived for exfiltration.
-- **Exfiltration** — data was tunnelled out over **DNS**, using encoded lookups (`nslookup`-style queries paired with the PowerShell process) to smuggle information past controls that watch HTTP but not DNS.
+- **Initial access** - a phishing email delivered the lure that began the intrusion.
+- **Execution** - a malicious PowerShell script executed on the endpoint, establishing a **PowerCat reverse shell** back to attacker infrastructure.
+- **Discovery** - hands-on-keyboard recon followed (system and user enumeration via built-in commands).
+- **Collection** - files of interest were staged into a hidden directory and archived for exfiltration.
+- **Exfiltration** - data was tunnelled out over **DNS**, using encoded lookups (`nslookup`-style queries paired with the PowerShell process) to smuggle information past controls that watch HTTP but not DNS.
 
-**4. Escalate on business impact.** The DNS-exfiltration alert was the pivotal one: recognising `nslookup.exe` driven by `powershell.exe` as covert exfiltration — rather than benign name resolution — is what justified escalation, given the high impact of a data breach. The case report for that alert set out the technique, the affected entities, the timeline, and the reasoning for escalation.
+**4. Escalate on business impact.** The DNS-exfiltration alert was the pivotal one: recognising `nslookup.exe` driven by `powershell.exe` as covert exfiltration — rather than benign name resolution - is what justified escalation, given the high impact of a data breach. The case report for that alert set out the technique, the affected entities, the timeline, and the reasoning for escalation.
 
-**5. Document to a consistent standard.** Each case report followed a 5 Ws structure — who/what was affected, what happened, where, when, and why it mattered — with escalation rationale, recommended remediation, and a list of attack indicators.
+**5. Document to a consistent standard.** Each case report followed a 5 Ws structure - who/what was affected, what happened, where, when, and why it mattered — with escalation rationale, recommended remediation, and a list of attack indicators.
 
 ## Key findings
 
 - **Full attack chain identified:** phishing email → malicious PowerShell (PowerCat reverse shell) → system/user discovery → data staged and archived → **DNS-tunnelled exfiltration**.
 - **DNS exfiltration correctly recognised:** the pairing of `nslookup` with the PowerShell process was dispositioned as covert data exfiltration, not benign traffic, and escalated on business-impact grounds.
 - **Triage performance (scenario-scored):**
-  - **True-positive identification rate: 100%** — every malicious detection correctly caught.
-  - **Mean time to resolve: 6 minutes** — alerts worked and closed efficiently under live conditions.
+  - **True-positive identification rate: 100%** - every malicious detection correctly caught.
+  - **Mean time to resolve: 6 minutes** - alerts worked and closed efficiently under live conditions.
   - **Alerts closed: 29.**
 
 ## Indicators of compromise (IOCs)
@@ -83,7 +83,7 @@ Unlike a retrospective investigation, this scenario tested **operational triage 
 
 ## Lessons learned
 
-- **Dispositioning is a skill in its own right.** The metric that mattered most wasn't catching the true positives (I caught them all) but doing it *at pace* — a 6-minute MTTR came from confidently closing alerts rather than over-investigating each one.
+- **Dispositioning is a skill in its own right.** The metric that mattered most wasn't catching the true positives (I caught them all) but doing it *at pace* - a 6-minute MTTR came from confidently closing alerts rather than over-investigating each one.
 - **DNS is a blind spot worth watching.** Exfiltration over DNS slips past controls focused on web traffic; the `powershell.exe` → `nslookup.exe` pattern is a high-value detection to carry forward.
-- **Honest growth area:** my false-positive discipline was solid but not perfect this run — a few benign alerts were escalated more cautiously than needed. Tightening that (dismissing benign detections faster and more decisively) is the specific thing I'd sharpen next, and it's a better use of shift time than re-checking true positives I've already confirmed.
-- **Reporting consistency compounds.** Feedback on my case notes flagged that the "where" of an incident could be stated more explicitly and consistently — a small habit that makes every report faster to action for the next analyst in the chain.
+- **Honest growth area:** my false-positive discipline was solid but not perfect this run - a few benign alerts were escalated more cautiously than needed. Tightening that (dismissing benign detections faster and more decisively) is the specific thing I'd sharpen next, and it's a better use of shift time than re-checking true positives I've already confirmed.
+- **Reporting consistency compounds.** Feedback on my case notes flagged that the "where" of an incident could be stated more explicitly and consistently - a small habit that makes every report faster to action for the next analyst in the chain.
