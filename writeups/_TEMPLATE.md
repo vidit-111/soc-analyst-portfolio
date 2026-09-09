@@ -41,4 +41,4 @@
 <Containment and longer-term actions you'd recommend, as you would in a real case report.>
 
 ## Lessons learned
-<2–3 honest takeaways — what the scenario reinforced, what you'd do differently, a technique you got sharper on.>
+<2–3 honest takeaways - what the scenario reinforced, what you'd do differently, a technique you got sharper on.>
