@@ -9,7 +9,7 @@
 
 ## Overview & objective
 
-Four post-compromise investigations, each starting from a different position in the attack and demanding a different forensic discipline. Across the set, the task was the same in spirit: take the available artefacts - endpoint logs, memory images, packet captures, email, and SIEM data — and reconstruct the full intrusion, from initial access through to the attacker's objective.
+Four post-compromise investigations, each starting from a different position in the attack and demanding a different forensic discipline. Across the set, the task was the same in spirit: take the available artefacts - endpoint logs, memory images, packet captures, email, and SIEM data - and reconstruct the full intrusion, from initial access through to the attacker's objective.
 
 Where a real-time triage scenario tests speed, these capstones test **depth**: normalising evidence from multiple sources into a single timeline, decoding obfuscation, and following an adversary end-to-end through the traces they leave behind.
 
@@ -65,7 +65,7 @@ Each scenario was reconstructed end-to-end — initial access → execution → 
 
 ## Lessons learned
 
-- **The timeline is the deliverable.** The hardest part of multi-source DFIR isn't any single tool — it's normalising timestamps and formats from logs, packets, and memory into one narrative. Getting disciplined with timeline tooling paid off across all four.
-- **Memory catches what disk and logs miss.** In Boogeyman 2, the memory image confirmed C2 and process lineage that weren't obvious from the document and task alone — a reminder to reach for volatile evidence, not just persistent artefacts.
+- **The timeline is the deliverable.** The hardest part of multi-source DFIR isn't any single tool - it's normalising timestamps and formats from logs, packets, and memory into one narrative. Getting disciplined with timeline tooling paid off across all four.
+- **Memory catches what disk and logs miss.** In Boogeyman 2, the memory image confirmed C2 and process lineage that weren't obvious from the document and task alone - a reminder to reach for volatile evidence, not just persistent artefacts.
 - **Hunting scales differently from forensics.** Boogeyman 3 was a shift in mindset: with centralised logs the skill is efficient pivoting through volume, not exhaustive examination of one host. Both muscles matter.
 - **Decoding is routine, not exceptional.** Base64 PowerShell and obfuscated macros show up constantly; treating de-obfuscation as a standard step rather than a special case kept each investigation moving.
