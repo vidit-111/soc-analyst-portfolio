@@ -28,7 +28,7 @@ Unlike a retrospective investigation, this scenario tested **operational triage 
 
 ## Investigation & methodology
 
-**1. Work the queue by priority, not by order of arrival.** As alerts populated in real time, I triaged by severity and timestamp rather than first-in-first-out — surfacing the highest-impact detections first so the genuine intrusion activity got attention ahead of low-severity noise.
+**1. Work the queue by priority, not by order of arrival.** As alerts populated in real time, I triaged by severity and timestamp rather than first-in-first-out - surfacing the highest-impact detections first so the genuine intrusion activity got attention ahead of low-severity noise.
 
 **2. Disposition before deep-diving.** Each alert was first classified true or false positive. Confidently dismissing benign detections is what keeps a live queue moving; sinking investigation time into every alert equally is how a real SOC falls behind. Every alert I closed carried a documented reason for its disposition.
 
