@@ -16,7 +16,7 @@ Each write-up focuses on **methodology and analysis**: how the investigation was
 | [Phishing Unfolding](writeups/phishing-unfolding.md) | TryHackMe SOC Simulator | Real-time phishing triage | Alert triage, dispositioning, IOC extraction, MTTR |
 | [SOC 1 Capstone](writeups/soc1-capstone.md) | TryHackMe SOC 1 | Multi-stage intrusion DFIR | Endpoint/memory/network forensics, PowerShell deobfuscation |
 | [OpenFire - Network Forensics](writeups/openfire-network-forensics.md) | CyberDefenders | PCAP analysis of an Openfire server compromise (CVE-2023-32315) | Network forensics, Wireshark, stream analysis, ATT&CK mapping |
-| [NerisBot-Splunk C2 Hunt](writeups/NerisBot-Splunk C2 Hunt) | CyberDefenders | Splunk threat hunt across Suricata/Zeek logs to trace botnet C2 | Splunk (SPL), threat hunting, log correlation VIrusTotal
+| [NerisBot-Splunk C2 Hunt](writeups/nerisbot-splunk-c2-hunt.md) | CyberDefenders | Splunk threat hunt across Suricata/Zeek logs to trace botnet C2 | Splunk (SPL), threat hunting, log correlation VIrusTotal
 ---
 
 ## Tools & techniques
