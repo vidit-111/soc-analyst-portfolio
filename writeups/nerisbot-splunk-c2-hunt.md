@@ -1,6 +1,6 @@
 # NerisBot - Splunk C2 Threat Hunt
 
-**Environment:** CyberDefenders (Blue Team CTF) | **Category:** Threat Hunting / Network Forensics | **Difficulty:** [add] | **Date completed:** [add your date, YYYY-MM-DD]
+**Environment:** CyberDefenders (Blue Team CTF) | **Category:** Threat Hunting / Network Forensics | **Date completed:** [2026-09-29]
 **Tags:** `threat-hunting` `splunk` `c2` `network-forensics` `suricata` `zeek` `mitre-attack`
 
 > Educational lab exercise from CyberDefenders. Challenge-specific answer values (IPs, domains, file hashes) are redacted or masked in line with the platform's terms. The SPL below is the actual search chain used, with answer values masked - the focus is the hunt methodology, not the solutions.
